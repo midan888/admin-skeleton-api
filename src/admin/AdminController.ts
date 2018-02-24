@@ -29,6 +29,10 @@ export class AdminController {
     res.json(await this.service.createAdmin(createAdminRequestBody));
   }
 
+  async findOne(req: Request, res: Response) {
+    res.json(await this.service.findOne(req.body.id));
+  }
+
   async search(req: Request, res: Response) {
     res.json(await this.service.search());
   }

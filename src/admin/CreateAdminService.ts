@@ -24,6 +24,10 @@ export class CreateAdminService {
     return this.repository.save(adminEntity);
   }
 
+  async findOne(id): Promise<AdminEntity> {
+    return this.repository.findOneById(id);
+  }
+
   search() {
     return this.repository.find();
   }
