@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
-import { TYPE_ADMIN_SERVICE_CREATE } from './interfaces';
+import { TYPE_ADMIN_SERVICE } from './interfaces';
 import { validationError } from '../main/errors';
-import { CreateAdminService } from './CreateAdminService';
+import { AdminService } from './AdminService';
 
 @injectable()
 export class AdminController {
-  private service: CreateAdminService;
+  private service: AdminService;
 
-  constructor(@inject(TYPE_ADMIN_SERVICE_CREATE) service) {
+  constructor(@inject(TYPE_ADMIN_SERVICE) service) {
     this.service = service;
   }
 
@@ -35,5 +35,9 @@ export class AdminController {
 
   async search(req: Request, res: Response) {
     res.json(await this.service.search());
+  }
+
+  async deleteOne(req: Request, res: Response) {
+    res.json(await this.service.deleteOne(req.body.id));
   }
 }

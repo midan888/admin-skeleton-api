@@ -4,13 +4,13 @@ import { AdminController } from './AdminController';
 import {
   TYPE_ADMIN_CONTROLLER,
   TYPE_ADMIN_REPO,
-  TYPE_ADMIN_SERVICE_CREATE,
+  TYPE_ADMIN_SERVICE,
 } from './interfaces';
 import { AdminEntity } from './AdminEntity';
-import { CreateAdminService } from './CreateAdminService';
+import { AdminService } from './AdminService';
 
 export const bindAdminModule = (container: Container) => {
   container.bind(TYPE_ADMIN_CONTROLLER).to(AdminController);
-  container.bind(TYPE_ADMIN_SERVICE_CREATE).to(CreateAdminService);
+  container.bind(TYPE_ADMIN_SERVICE).to(AdminService);
   container.bind(TYPE_ADMIN_REPO).toDynamicValue(() => ( getRepository(AdminEntity)));
 };

@@ -5,7 +5,7 @@ import { AdminEntity } from './AdminEntity';
 import { Repository } from 'typeorm';
 
 @injectable()
-export class CreateAdminService {
+export class AdminService {
   private repository: Repository<AdminEntity>;
 
   constructor(@inject(TYPE_ADMIN_REPO) adminRepository) {
@@ -25,10 +25,14 @@ export class CreateAdminService {
   }
 
   async findOne(id): Promise<AdminEntity> {
-    return this.repository.findOneById(id);
+    return this.repository.findOne(id);
   }
 
   search() {
     return this.repository.find();
+  }
+
+  deleteOne(id) {
+    return this.repository.delete(id);
   }
 }
